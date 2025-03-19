@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="static\styles\style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <title>Modern Navigation</title>
+
+</head>
+
+<body>
+  <div class="offcanvas2" style="background-color: orange">
+    <div class="offcanvas offcanvas-end show text-bg-dark" tabindex="-1" id="offcanvasDark"
+      aria-labelledby="offcanvasDarkLabel" style="background-color: whitesmoke">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">
+          Cab<span style="color: orange">Guru</span>
+        </h5>
+      </div>
+      <div class="offcanvas-body" style="
+            list-style-type: none;
+            height: 55vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          ">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <img src="static/image/2738307_compare_law_libra_icon.png" alt="Compare" />
+              Compare Services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="best_path">
+              <img src="static/image/2216343_location_map_navigation_path_pin_icon.png" alt="Best Path" />
+              Best Route
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="fare_estimation">
+              <img src="static/image/290147_bank_cash_finance_money_payment_icon.png" alt="Fare Prediction" />
+              Fare Estimation
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact_us">
+              <img src="static/image/contact-mail.png" alt="Contact" />
+              Contact Us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq">
+              <img src="static/image/5349749_faq_faqs_help_info_information_icon.png" alt="FAQ" />
+              FAQs
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="intro" id="intro">
+    <div class="main-content">
+      <div class="top-box">
+        <h1>Cab<span style="color: orange">Guru</span></h1>
+      </div>
+      <div class="content-container">
+        <div class="large-box">
+          <h1>Compare the ride <br> Now or Later !</h1>
+        </div>
+      </div>
+
+      <div class="large-box2" id="lgbx2">
+        <div class="medium-box" style="flex: 2;">
+          <div class="input-group flex-nowrap">
+            <input type="text" id="fromLocation" class="form-control" placeholder="From.." style="height: 50px; border: 1px solid orange;"
+              aria-label="Username" aria-describedby="addon-wrapping" oninput="autoCompleteLocation('fromLocation')"
+              required>
+            <div id="fromLocationSuggestions" class="autocomplete-results"></div>
+          </div>
+
+        </div>
+        <div class="medium-box" style="flex: 0.1;"></div>
+        <div class="medium-box" style="flex: 2;">
+          <div class="input-group flex-nowrap">
+            <input type="text" id="toLocation" class="form-control" placeholder="To.." aria-label="Username"
+              style="height: 50px;  border: 1px solid orange;" aria-describedby="addon-wrapping" oninput="autoCompleteLocation('toLocation')"
+              required>
+            <div id="toLocationSuggestions" class="autocomplete-results"></div>
+          </div>
+        </div>
+      </div>
+      <div class="large-box2" id="lgbx3" style="height: 140px; display: none; margin-top: 20px;">
+        <div class="medium-box" style="height: 100%; border: 0px solid black; width: 100%; gap: 10px;">
+          <div class="cnt1">
+            <div class="cnt2">
+                <div class="cnt3-1">
+                    <div class="ol1">
+                        <a href="/static/image/OIP.jpg" style="display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                            <img src="/static/image/OIP.jpg" alt="Image" style="width: 50%; height: 40%;">
+                        </a>
+                    </div>
+                    <div class="ol2">Total amount is<br><span style="font-size: 30px;">200$</span></div>
+                    <div class="ol3">
+                        <button id="btnDesign" onclick="gotoOla()">Proceed here</button>
+                    </div>
+                </div>
+                <div class="cnt3-2">
+                    <div class="ol1">
+                        <a href="static\image\OIP.jpg" style="display: flex;
+                        justify-content: center;
+                        align-items: center;">
+                            <img src="static\image\logo-uber-4096.png" alt="Image" style="width: 50%; height: 40%;">
+                        </a>
+                    </div>
+                    <div class="ol2">Total amount is<br><span style="font-size: 30px;">200$</span></div>
+                    <div class="ol3">
+                        <button id="btnDesign" onclick="gotoUber()">Proceed here</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+      </div>
+
+      <div id="content"></div>
+
+      <div class="small-box" id="smbx">
+        <div class="input-group mb-3">
+          <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+            <option selected>Choose the vehicle type...</option>
+            <option value="mini" id="mini">Mini</option>
+            <option value="suv" id="suv">SUV</option>
+            <option value="auto" id="auto">Auto</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-outline-secondary" type="button" id="btn">Compare</button>
+    </div>
+  </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-rZyP5IcCyyQk1/S2Kfsk8A3O8Bf8OqB5HGSj3m6z5j5N2/E6EJ6lS3K0fdrnXhZT"
+    crossorigin="anonymous"></script>
+
+  <script>
+    document.getElementById("btn").addEventListener("click", function () {
+      let fromLocation = document.getElementById("fromLocation").value.trim();
+      let toLocation = document.getElementById("toLocation").value.trim();
+      let selectedVehicle = document.getElementById("inputGroupSelect03").value;
+      if (fromLocation === "" || toLocation === "") {
+        alert("Please enter both 'From' and 'To' locations.");
+        return;
+      }
+      if (selectedVehicle === "Choose the vehicle type...") {
+        alert("Please select a vehicle type");
+        return;
+      }
+      document.getElementById("lgbx2").style.display = "none";
+      document.getElementById("smbx").style.display = "none";
+      document.getElementById("btn").style.display = "none";
+      document.getElementById("lgbx3").style.display = "flex";
+      let imgPath = "";
+      if (selectedVehicle === "mini") {
+        imgPath = "/image/static/vehicle.png";
+      } else if (selectedVehicle === "suv") {
+        imgPath = "/image/static/suv-car.png";
+      } else if (selectedVehicle === "auto") {
+        imgPath = "/image/static/rickshaw.png";
+      }
+      updateImageContainers(imgPath);
+    });
+    function updateImageContainers(imagePath) {
+      let container1 = document.getElementById("imageContainer");
+      let container2 = document.getElementById("imageContainer2");
+      container1.innerHTML = "";
+      container2.innerHTML = "";
+      let tag1 = document.createElement("img");
+      tag1.src = imagePath;
+      tag1.alt = "Vehicle Image";
+      tag1.style.width = "100px";
+      let tag2 = document.createElement("img");
+      tag2.src = imagePath;
+      tag2.alt = "Vehicle Image";
+      tag2.style.width = "100px";
+      container1.appendChild(tag1);
+      container2.appendChild(tag2);
+    }
+
+    const apiKey = "YOUR_API_KEY"; // Replace with your actual LocationIQ API Key
+    async function autoCompleteLocation(inputId) {
+      const query = document.getElementById(inputId).value;
+      if (query.length < 3) return;
+
+      const url = `https://api.locationiq.com/v1/autocomplete?key=${apiKey}&q=${query}&limit=5&dedupe=1`;
+
+      try {
+        console.log(`Fetching: ${url}`);
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Autocomplete Response:", data);
+
+        const suggestionBox = document.getElementById(inputId + "Suggestions");
+        suggestionBox.innerHTML = "";
+        suggestionBox.style.display = "block";
+
+        data.forEach(place => {
+          const div = document.createElement("div");
+          div.className = "autocomplete-suggestion";
+          div.innerText = place.display_name;
+          div.onclick = () => {
+            document.getElementById(inputId).value = place.display_name;
+            suggestionBox.style.display = "none";
+            document.getElementById(inputId).setAttribute("data-lat", place.lat);
+            document.getElementById(inputId).setAttribute("data-lon", place.lon);
+          };
+          suggestionBox.appendChild(div);
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(`#${inputId}Suggestions`) && !event.target.closest(`#${inputId}`)) {
+            suggestionBox.style.display = "none";
+          }
+        });
+
+      } catch (error) {
+        console.error("Autocomplete error:", error);
+      }
+    }
+
+
+
+
+    function gotoOla(){
+      link = `https://book.olacabs.com/`
+      window.location.href = link;
+      
+    }
+    function gotoUber(){
+      link = `https://www.uber.com/`
+      window.location.href = link;
+      
+    }
+  </script>
+</body>
+
+</html>

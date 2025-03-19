@@ -1,0 +1,196 @@
+ /* General Styles */
+ body {
+    background: linear-gradient(to right, white, white);
+    font-family: "Poppins", sans-serif;
+    color: black;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    /* background-image: url('/static/logo.png'); */
+
+  }
+
+  /* Offcanvas Navigation */
+  .offcanvas {
+    margin-left: 10px;
+    border: 0px solid black;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+  }
+
+  .offcanvas2 {
+    border: 0px solid red;
+    width: 290px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+  }
+
+  .offcanvas-header {
+    text-align: center;
+    padding: 20px;
+    height: 30%;
+  }
+
+  .offcanvas-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  .offcanvas-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 70%;
+  }
+
+  /* Navigation Items */
+  .nav-item {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    list-style: none;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.2);
+    color: black;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.5s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.03);
+    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.3);
+    border: 0px solid orange;
+    color: orange;
+  }
+
+  .nav-link img {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* -----------------------------Jinja2-------------------------------------- */
+
+
+ .container {
+     width: 50%;
+     margin: 50px auto;
+     padding: 20px;
+     background: white;
+     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+     border: 2px solid #ff9800;
+     /* Orange border */
+ }
+
+ h1 {
+     color: #ff9800;
+     /* Orange heading */
+ }
+
+ label {
+     font-size: 18px;
+     font-weight: bold;
+     color: #e65100;
+     /* Darker orange */
+ }
+
+ input {
+     width: 80%;
+     padding: 8px;
+     margin: 10px 0;
+     border: 2px solid #ff9800;
+     border-radius: 5px;
+     background-color: #fffaf0;
+     color: #333;
+     font-size: 16px;
+ }
+
+ button {
+     background-color: #ff9800;
+     color: white;
+     padding: 10px 15px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 16px;
+     font-weight: bold;
+ }
+
+ button:hover {
+     background-color: #e65100;
+ }
+
+ p {
+     font-size: 20px;
+     font-weight: bold;
+     color: #d84315;
+     /* Deep orange */
+ }
+
+ a {
+     display: inline-block;
+     margin-top: 15px;
+     text-decoration: none;
+     color: #ff9800;
+     font-size: 18px;
+     font-weight: bold;
+ }
+
+ a:hover {
+     text-decoration: underline;
+     color: #e65100;
+ }
+
+
+
+
+
+
+ .cnt1 {
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     width: 95%;
+     justify-content: center;
+     align-items: center;
+ }

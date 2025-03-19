@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Path</title>
+
+  <!-- Leaflet.js and Mapbox Polyline -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-polyline/1.1.1/polyline.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&family=Ubuntu:wght@300;400;500;700&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="static\styles\bestPath.css">
+
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="offcanvas2" style="background-color: orange; border-radius: 15px;">
+    <div class="offcanvas offcanvas-end show text-bg-dark" tabindex="-1" id="offcanvasDark"
+      aria-labelledby="offcanvasDarkLabel" style="background-color: whitesmoke">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Cab<span style="color: orange">Guru</span></h5>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+
+            <a class="nav-link" href="/">
+              <img src="static/image/2738307_compare_law_libra_icon.png" alt="Compare" />
+              Compare Services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="best_path">
+              <img src="static/image/2216343_location_map_navigation_path_pin_icon.png" alt="Best Path" />
+              Best Route
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="fare_estimation">
+              <img src="static/image/290147_bank_cash_finance_money_payment_icon.png" alt="Fare Prediction" />
+              Fare Estimation
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact_us">
+              <img src="static/image/contact-mail.png" alt="Contact" />
+              Contact Us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq">
+              <img src="static/image/5349749_faq_faqs_help_info_information_icon.png" alt="FAQ" />
+              FAQs
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="bd1">
+    <h2 style="font-size: 3em;">Find the Best Route</h2>
+
+    <!-- Input fields with autocomplete -->
+    <div style="position: relative; ">
+      <input type="text" id="fromLocation" placeholder="Enter Starting Location"
+        oninput="autoCompleteLocation('fromLocation')" required>
+      <div id="fromLocationSuggestions" class="autocomplete-results"></div>
+    </div>
+
+    <div style="position: relative;">
+      <input type="text" id="toLocation" placeholder="Enter Destination" oninput="autoCompleteLocation('toLocation')"
+        required>
+      <div id="toLocationSuggestions" class="autocomplete-results"></div>
+    </div>
+
+    <button onclick="fetchRoute()">Generate Route</button>
+
+    <div id="map"></div>
+  </div>
+
+  <script>
+    const apiKey = "YOURAPIKEY"; // Replace with your actual LocationIQ API Key
+    let map, routeLayer;
+
+    async function autoCompleteLocation(inputId) {
+      const query = document.getElementById(inputId).value;
+      if (query.length < 3) return;
+
+      const url = `https://api.locationiq.com/v1/autocomplete?key=${apiKey}&q=${query}&limit=5&dedupe=1`;
+
+      try {
+        console.log(`Fetching: ${url}`);
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Autocomplete Response:", data);
+
+        const suggestionBox = document.getElementById(inputId + "Suggestions");
+        suggestionBox.innerHTML = "";
+        suggestionBox.style.display = "block";
+
+        data.forEach(place => {
+          const div = document.createElement("div");
+          div.className = "autocomplete-suggestion";
+          div.innerText = place.display_name;
+          div.onclick = () => {
+            document.getElementById(inputId).value = place.display_name;
+            suggestionBox.style.display = "none";
+            document.getElementById(inputId).setAttribute("data-lat", place.lat);
+            document.getElementById(inputId).setAttribute("data-lon", place.lon);
+          };
+          suggestionBox.appendChild(div);
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(`#${inputId}Suggestions`) && !event.target.closest(`#${inputId}`)) {
+            suggestionBox.style.display = "none";
+          }
+        });
+
+      } catch (error) {
+        console.error("Autocomplete error:", error);
+      }
+    }
+
+    async function fetchRoute() {
+      const fromInput = document.getElementById("fromLocation");
+      const toInput = document.getElementById("toLocation");
+
+      const fromLat = fromInput.getAttribute("data-lat");
+      const fromLon = fromInput.getAttribute("data-lon");
+      const toLat = toInput.getAttribute("data-lat");
+      const toLon = toInput.getAttribute("data-lon");
+
+      if (!fromLat || !fromLon || !toLat || !toLon) {
+        alert("Please select valid locations from the suggestions.");
+        return;
+      }
+
+      const directions_url = `https://us1.locationiq.com/v1/directions/driving/${fromLon},${fromLat};${toLon},${toLat}?key=${apiKey}&overview=full&geometries=polyline`;
+
+      try {
+        const response = await fetch(directions_url);
+        const data = await response.json();
+
+        if (data.routes && data.routes.length > 0) {
+          const encodedPolyline = data.routes[0].geometry;
+
+          document.getElementById("map").style.display = "block";
+
+          if (!map) {
+            map = L.map("map").setView([fromLat, fromLon], 14);
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution: '© OpenStreetMap contributors',
+            }).addTo(map);
+          } else {
+            map.setView([fromLat, fromLon], 14);
+            if (routeLayer) {
+              map.removeLayer(routeLayer);
+            }
+          }
+
+          // Decode polyline using Mapbox polyline
+          const decodedRoute = polyline.decode(encodedPolyline).map(([lat, lon]) => [lat, lon]);
+
+          routeLayer = L.polyline(decodedRoute, { color: "blue", weight: 5 }).addTo(map);
+
+          L.marker([fromLat, fromLon]).addTo(map).bindPopup("Starting Point").openPopup();
+          L.marker([toLat, toLon]).addTo(map).bindPopup("Destination Point").openPopup();
+
+          map.fitBounds(routeLayer.getBounds());
+        } else {
+          alert("No route found.");
+        }
+      } catch (error) {
+        console.error("Error fetching route:", error);
+        alert("Failed to fetch route.");
+      }
+    }
+  </script>
+</body>
+
+</html>

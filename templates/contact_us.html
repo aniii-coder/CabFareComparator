@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best path</title>
+    <link rel="stylesheet" href="static\styles\contact_us.css" />
+  </head>
+
+  <body>
+    <div class="offcanvas2" style="background-color: orange">
+      <div
+        class="offcanvas offcanvas-end show text-bg-dark"
+        tabindex="-1"
+        id="offcanvasDark"
+        aria-labelledby="offcanvasDarkLabel"
+        style="background-color: whitesmoke"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title">
+            Cab<span style="color: orange">Guru</span>
+          </h5>
+        </div>
+        <div
+          class="offcanvas-body"
+          style="
+            list-style-type: none;
+            height: 55vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          "
+        >
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <img
+                  src="static/image/2738307_compare_law_libra_icon.png"
+                  alt="Compare"
+                />
+                Compare Services
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="best_path">
+                <img
+                  src="static/image/2216343_location_map_navigation_path_pin_icon.png"
+                  alt="Best Path"
+                />
+                Best Route
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="fare_estimation">
+                <img
+                  src="static/image/290147_bank_cash_finance_money_payment_icon.png"
+                  alt="Fare Prediction"
+                />
+                Fare Estimation
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact_us">
+                <img src="static/image/contact-mail.png" alt="Contact" />
+                Contact Us
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="faq">
+                <img
+                  src="static/image/5349749_faq_faqs_help_info_information_icon.png"
+                  alt="FAQ"
+                />
+                FAQs
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bd1">
+      <div class="bd1-1">
+        <div class="bd2-1">
+          <h1
+            style="
+              border: 0px solid black;
+              width: 100%;
+              flex: 1;
+              text-align: right;
+              position: relative;
+              font-size: 6.5vh;
+            "
+          >
+            Contact <span style="color: orange">Us</span>
+          </h1>
+
+          <form action="post" style="width: 100%">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter Your Name....."
+              class="name1"
+            />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter Your Email...."
+              class="name1"
+            />
+            <textarea
+              name="message"
+              id="message"
+              placeholder="Enter Your Message...."
+              class="name1"
+              style="height: 120px"
+            ></textarea>
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="btn"
+              onclick="sbmt()"
+            >
+              Submit
+            </button>
+          </form>
+          <a href="mailto:{email}?body={message}"></a>
+        </div>
+        <div class="bd2-2">
+          <img src="static\image\contact-us-concept-landing-page.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function sbmt() {
+        let name1 = document.getElementById("name").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let message = document.getElementById("message").value.trim();
+
+        if (!name1 || !email || !message) {
+          alert("Please fill all the fields");
+          return;
+        }
+
+        let subject = "Have Some Issue !!";
+        let body = `Thank you for contacting us. Please enter in detail.\n\n${message}`;
+
+        let mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+          subject
+        )}&body=${encodeURIComponent(body)}`;
+
+        // Create a temporary <a> tag and trigger click
+        let link = document.createElement("a");
+        link.href = mailtoLink;
+        link.click();
+
+        // Clear the form after submission
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      }
+    </script>
+  </body>
+</html>

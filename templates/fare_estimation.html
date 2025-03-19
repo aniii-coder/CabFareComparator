@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best path</title>
+    <link rel="stylesheet" href="/static/styles/fareEstimation.css">
+
+
+</head>
+<body>
+  <div class="offcanvas2" style="background-color: orange">
+    <div class="offcanvas offcanvas-end show text-bg-dark" tabindex="-1" id="offcanvasDark"
+      aria-labelledby="offcanvasDarkLabel" style="background-color: whitesmoke">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title">
+          Cab<span style="color: orange">Guru</span>
+        </h5>
+      </div>
+      <div class="offcanvas-body" style="
+            list-style-type: none;
+            height: 55vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          ">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/" style="text-decoration: none;">
+              <img src="static/image/2738307_compare_law_libra_icon.png" alt="Compare" />
+              Compare Services
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="best_path" style="text-decoration: none;">
+              <img src="static/image/2216343_location_map_navigation_path_pin_icon.png" alt="Best Path" />
+              Best Route
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="fare_estimation" style="text-decoration: none;">
+              <img src="static/image/290147_bank_cash_finance_money_payment_icon.png" alt="Fare Prediction" />
+              Fare Estimation
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact_us" style="text-decoration: none;">
+              <img src="static/image/contact-mail.png" alt="Contact" />
+              Contact Us
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq" style="text-decoration: none;">
+              <img src="static/image/5349749_faq_faqs_help_info_information_icon.png" alt="FAQ" />
+              FAQs
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    
+<div class="cnt1" >
+      <h1>Safar Mehenga Ya Sasta?</h1>
+
+      <div class="container">
+        
+
+        <form action="/fare_estimation" method="post">
+            <label for="distance">Enter Distance (in km):</label><br>
+            <input type="text" name="distance" id="distance" required><br>
+            <button type="submit">Calculate Fare</button>
+        </form>
+
+        {% if estimated_fare %}
+            <p>Estimated Fare: ₹{{ estimated_fare }}</p>
+        {% endif %}
+
+        <a href="/">Back to Home</a>
+    </div>
+          
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
